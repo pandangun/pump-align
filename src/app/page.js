@@ -1,103 +1,234 @@
-import Image from "next/image";
+"use client";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  // плавный скролл по якорям
+  const scrollTo = (id) =>
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
+  return (
+    <main className="min-h-screen bg-gradient-to-br from-sky-100 to-blue-50 text-gray-800">
+      {/* ====== Навбар ====== */}
+      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur border-b">
+        <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
+          <div className="text-xl font-extrabold text-blue-700">ЛНК • Вибродиагностика & Центровка</div>
+          <nav className="hidden md:flex gap-6 text-sm">
+            <button onClick={() => scrollTo("home")} className="hover:text-blue-700">Главная</button>
+            <button onClick={() => scrollTo("services")} className="hover:text-blue-700">Услуги</button>
+            <button onClick={() => scrollTo("pricing")} className="hover:text-blue-700">Цены</button>
+            <button onClick={() => scrollTo("docs")} className="hover:text-blue-700">Документы</button>
+            <button onClick={() => scrollTo("contact")} className="hover:text-blue-700">Контакты</button>
+          </nav>
+          <a href="tel:+7XXXXXXXXXX" className="hidden sm:inline-block rounded-xl bg-blue-600 text-white px-4 py-2 font-semibold hover:bg-blue-700">
+            +7 (___) ___-__-__
           </a>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </header>
+
+      {/* ====== HERO ====== */}
+      <section id="home" className="mx-auto max-w-7xl px-6 py-16 text-center">
+        <h1 className="text-4xl md:text-6xl font-extrabold text-blue-700">
+          Лаборатория ЛНК — вибродиагностика, центровка и балансировка
+        </h1>
+        <p className="mt-6 text-lg md:text-xl max-w-4xl mx-auto">
+          Неразрушающий контроль состояния машин без остановки процесса. Устраняем «мягкую лапу»,
+          выполняем лазерную центровку валов, балансировку и выдаём протокол со спектральным анализом.
+          Работаем по ГОСТ, современное оборудование, инженеры с опытом 20+ лет.
+        </p>
+        <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+          <button onClick={() => scrollTo("services")} className="px-8 py-4 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700">
+            Посмотреть услуги
+          </button>
+          <button onClick={() => scrollTo("contact")} className="px-8 py-4 rounded-xl bg-white text-blue-700 font-semibold shadow hover:shadow-md">
+            Оставить заявку
+          </button>
+        </div>
+        <p className="mt-6 text-sm text-gray-500">Выезд по всей России • Протокол в день работ • Гарантия качества</p>
+      </section>
+
+      {/* ====== УСЛУГИ ====== */}
+      <section id="services" className="bg-white/70 border-y">
+        <div className="mx-auto max-w-7xl px-6 py-16">
+          <h2 className="text-3xl font-bold text-blue-700 text-center">Наши услуги</h2>
+
+          {/* Вибродиагностика */}
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            <div className="rounded-2xl bg-white p-6 shadow-sm">
+              <h3 className="text-xl font-semibold">Вибродиагностика</h3>
+              <p className="mt-3">
+                Метод НК, позволяющий оценить техническое состояние без остановки.
+                Спектральный анализ выявляет &gt;100 типов дефектов: разбаланс, перекос, резонанс,
+                дефекты подшипников, износ муфт, разуплотнения и др.
+              </p>
+              <ul className="mt-3 list-disc list-inside text-sm text-gray-700 space-y-1">
+                <li>Оборудование под давлением: котлы, бойлеры, экономайзеры, котлы-утилизаторы</li>
+                <li>Газоснабжение: КС с центробежными нагнетателями, ГПА</li>
+                <li>Подъёмные сооружения: электродвигатели, редукторы, шахтные подъёмные машины</li>
+                <li>Горнорудная отрасль: дробилки, мельницы, редукторы, эл. двигатели</li>
+                <li>Угольная отрасль: подъёмные машины, экскаваторы, дробилки, вентиляторы</li>
+                <li>Нефтегаз: насосы, компрессоры, турбины, нагнетатели, дымососы, воздуходувки</li>
+                <li>Металлургия: редукторы конвейеров, турбины, генераторы, насосы, вентиляторы</li>
+                <li>Опасные производства: аммиачные ХУ, ЭТ-котлы, насосно-компрессорное</li>
+                <li>Электроагрегаты, фундаменты и несущие конструкции</li>
+              </ul>
+              <p className="mt-3 text-sm text-gray-600">
+                Результат: протокол со спектрами и контурной характеристикой, рекомендации по ремонту.
+              </p>
+            </div>
+
+            {/* Центровка + Балансировка */}
+            <div className="space-y-6">
+              <div className="rounded-2xl bg-white p-6 shadow-sm">
+                <h3 className="text-xl font-semibold">Лазерная центровка валов</h3>
+                <p className="mt-3">
+                  Выравнивание осей валов в допусках производителя/ISO. Устраняем «мягкую лапу»,
+                  подбираем шимирующие пластины, подтверждаем результат контрольным замером.
+                </p>
+                <ul className="mt-3 list-disc list-inside text-sm text-gray-700 space-y-1">
+                  <li>Этапы: подготовка → измерение → корректировка → контроль</li>
+                  <li>Снижение вибрации, ресурсы подшипников и муфт ↑</li>
+                </ul>
+              </div>
+
+              <div className="rounded-2xl bg-white p-6 shadow-sm">
+                <h3 className="text-xl font-semibold">Балансировка</h3>
+                <p className="mt-3">
+                  Устраняем неуравновешенность вращающихся частей (роторов, колес, шкивов).
+                </p>
+                <ul className="mt-3 list-disc list-inside text-sm text-gray-700 space-y-1">
+                  <li>Динамическая: разность фаз на подшипниках ≤ 180°, коррекция в 2 плоскостях</li>
+                  <li>Статическая: стабильная фаза на оборотной частоте, 1 плоскость коррекции</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* ВИК / ПВК */}
+          <div className="mt-6 grid gap-6 md:grid-cols-2">
+            <div className="rounded-2xl bg-white p-6 shadow-sm">
+              <h3 className="text-xl font-semibold">Визуально-измерительный контроль (ВИК)</h3>
+              <p className="mt-3">
+                «Входной фильтр» качества сварных соединений: выявление дефектов, имеющих выход на поверхность
+                от ≈100 мкм. Проводится на этапах сборки и после сварки: геометрия, непровар, подрезы и т. п.
+              </p>
+            </div>
+            <div className="rounded-2xl bg-white p-6 shadow-sm">
+              <h3 className="text-xl font-semibold">Капиллярный контроль (ПВК)</h3>
+              <p className="mt-3">
+                Обнаружение поверхностных и сквозных дефектов по капиллярному проникновению пенетранта
+                и формированию индикаторного рисунка. Применяется к металлам, пластикам, керамике и др.
+              </p>
+              <p className="mt-2 text-sm text-gray-600">Очистка → нанесение пенетранта → удаление → проявление → оценка.</p>
+            </div>
+          </div>
+
+          <div className="mt-10 text-center">
+            <button onClick={() => scrollTo("contact")} className="px-8 py-4 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700">
+              Получить консультацию
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* ====== ЦЕНЫ ====== */}
+      <section id="pricing" className="mx-auto max-w-7xl px-6 py-16">
+        <h2 className="text-3xl font-bold text-blue-700 text-center">Цены</h2>
+        <p className="mt-3 text-center text-gray-700">Итоговая стоимость зависит от типа агрегата, доступности и срочности.</p>
+
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          {[
+            { title: "Диагностика", price: "от 9 900 ₽", items: ["Осмотр, замеры вибраций", "Спектральный анализ", "Рекомендации"] },
+            { title: "Центровка", price: "от 14 900 ₽", items: ["Устранение soft foot", "Лазерные измерения", "Протокол с допусками"] },
+            { title: "Балансировка", price: "от 19 900 ₽", items: ["Статическая/динамическая", "Коррекция грузами/шимами", "Контрольный замер"] },
+          ].map((p, i) => (
+            <div key={i} className="rounded-2xl bg-white p-6 shadow-sm hover:shadow-md">
+              <h3 className="text-xl font-semibold">{p.title}</h3>
+              <div className="mt-3 text-2xl font-extrabold text-blue-700">{p.price}</div>
+              <ul className="mt-4 list-disc list-inside text-sm text-gray-700 space-y-1">
+                {p.items.map((it, j) => <li key={j}>{it}</li>)}
+              </ul>
+              <button onClick={() => scrollTo("contact")} className="mt-6 w-full rounded-xl bg-blue-600 text-white py-3 font-semibold hover:bg-blue-700">
+                Оставить заявку
+              </button>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ====== ДОКУМЕНТЫ ====== */}
+      <section id="docs" className="bg-white/70 border-y">
+        <div className="mx-auto max-w-7xl px-6 py-16">
+          <h2 className="text-3xl font-bold text-blue-700 text-center">Документы и соответствие</h2>
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            <ul className="rounded-2xl bg-white p-6 shadow-sm list-disc list-inside space-y-2">
+              <li>Работы выполняются в соответствии с ГОСТ и ISO (по объектам и методам НК)</li>
+              <li>Протокол измерений: спектры, контурная характеристика, выводы и рекомендации</li>
+              <li>Сертифицированные инженеры, опыт работ &gt; 20 лет</li>
+              <li>Новейшее высокоточное оборудование</li>
+            </ul>
+            <div className="rounded-2xl bg-white p-6 shadow-sm">
+              <h3 className="font-semibold">Скачать</h3>
+              <ul className="mt-3 list-disc list-inside text-blue-700">
+                <li><a href="/docs/primer-protokola.pdf" target="_blank">Пример протокола (PDF)</a></li>
+                <li><a href="/docs/licenses.zip" target="_blank">Лицензии и сертификаты (архив)</a></li>
+                <li><a href="/docs/gost-list.pdf" target="_blank">Перечень применимых ГОСТ/ISO</a></li>
+              </ul>
+              <p className="mt-3 text-xs text-gray-500">Положи файлы в папку <code>public/docs/</code> и назови как в ссылках.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ====== КОНТАКТЫ ====== */}
+      <section id="contact" className="mx-auto max-w-7xl px-6 py-16">
+        <h2 className="text-3xl font-bold text-blue-700 text-center">Контакты</h2>
+        <div className="mt-10 grid gap-10 md:grid-cols-2">
+          <div>
+            <p className="text-lg">Лаборатория неразрушающего контроля «ЛНК»</p>
+            <ul className="mt-4 space-y-2">
+              <li>📞 <a className="hover:text-blue-700" href="tel:+7XXXXXXXXXX">+7 (___) ___-__-__</a></li>
+              <li>✉️ <a className="hover:text-blue-700" href="mailto:info@lnk-lab.ru">info@lnk-lab.ru</a></li>
+              <li>📍 Работаем по всей России</li>
+            </ul>
+
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                const f = e.currentTarget;
+                const body = encodeURIComponent(
+                  `Имя: ${f.name.value}\nТелефон: ${f.phone.value}\nСообщение: ${f.msg.value}`
+                );
+                window.location.href =
+                  `mailto:info@lnk-lab.ru?subject=${encodeURIComponent("Заявка с сайта ЛНК")}&body=${body}`;
+                f.reset();
+              }}
+              className="mt-6 bg-white rounded-2xl p-6 shadow-sm space-y-4"
+            >
+              <input name="name" className="w-full rounded-xl border px-4 py-3" placeholder="Ваше имя" />
+              <input name="phone" className="w-full rounded-xl border px-4 py-3" placeholder="Телефон *" />
+              <textarea name="msg" rows={4} className="w-full rounded-xl border px-4 py-3" placeholder="Коротко опишите задачу" />
+              <button className="w-full rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3">
+                Отправить заявку
+              </button>
+              <p className="text-xs text-gray-500">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.</p>
+            </form>
+          </div>
+
+          {/* Карта (при желании заменишь на точный адрес) */}
+          <div className="overflow-hidden rounded-2xl shadow-sm h-[340px]">
+            <iframe
+              title="map"
+              src="https://www.google.com/maps?q=Russia&output=embed"
+              className="w-full h-full"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* ====== Футер ====== */}
+      <footer className="text-center text-sm text-gray-500 py-8">
+        © {new Date().getFullYear()} ЛНК — вибродиагностика, центровка, балансировка. Все права защищены.
       </footer>
-    </div>
+    </main>
   );
 }
