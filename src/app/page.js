@@ -1,234 +1,362 @@
-"use client";
+/* app/page.js — Главная */
+import Link from "next/link";
+import Script from "next/script";
+
+/* ====== SEO ====== */
+export const metadata = {
+  title:
+    "ЛНК — вибродиагностика, лазерная центровка валов, балансировка | Протокол в день работ",
+  description:
+    "Лаборатория ЛНК выполняет вибродиагностику, лазерную центровку валов и балансировку. Работаем по ГОСТ/ISO, выезд по всей России. Протоколы и рекомендации — в день работ. 20+ лет практики.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    title:
+      "ЛНК — вибродиагностика, центровка валов и балансировка | ГОСТ/ISO, 20+ лет опыта",
+    description:
+      "Диагностика без остановки процесса. Лазерная центровка валов, устранение «мягкой лапы», динамическая и статическая балансировка. Протоколы и рекомендации в день работ.",
+    url: "https://example.com/",
+    siteName: "ЛНК",
+    locale: "ru_RU",
+    type: "website",
+  },
+};
+
+const PHONE_TEL = "+78129005051";
+const PHONE_HUMAN = "8 (812) 900-50-51";
 
 export default function Home() {
-  // плавный скролл по якорям
-  const scrollTo = (id) =>
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-
   return (
-    <main className="min-h-screen bg-gradient-to-br from-sky-100 to-blue-50 text-gray-800">
-      {/* ====== Навбар ====== */}
-      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur border-b">
-        <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
-          <div className="text-xl font-extrabold text-blue-700">ЛНК • Вибродиагностика & Центровка</div>
-          <nav className="hidden md:flex gap-6 text-sm">
-            <button onClick={() => scrollTo("home")} className="hover:text-blue-700">Главная</button>
-            <button onClick={() => scrollTo("services")} className="hover:text-blue-700">Услуги</button>
-            <button onClick={() => scrollTo("pricing")} className="hover:text-blue-700">Цены</button>
-            <button onClick={() => scrollTo("docs")} className="hover:text-blue-700">Документы</button>
-            <button onClick={() => scrollTo("contact")} className="hover:text-blue-700">Контакты</button>
-          </nav>
-          <a href="tel:+7XXXXXXXXXX" className="hidden sm:inline-block rounded-xl bg-blue-600 text-white px-4 py-2 font-semibold hover:bg-blue-700">
-            +7 (___) ___-__-__
-          </a>
-        </div>
-      </header>
-
+    <main className="bg-white text-slate-900">
       {/* ====== HERO ====== */}
-      <section id="home" className="mx-auto max-w-7xl px-6 py-16 text-center">
-        <h1 className="text-4xl md:text-6xl font-extrabold text-blue-700">
-          Лаборатория ЛНК — вибродиагностика, центровка и балансировка
-        </h1>
-        <p className="mt-6 text-lg md:text-xl max-w-4xl mx-auto">
-          Неразрушающий контроль состояния машин без остановки процесса. Устраняем «мягкую лапу»,
-          выполняем лазерную центровку валов, балансировку и выдаём протокол со спектральным анализом.
-          Работаем по ГОСТ, современное оборудование, инженеры с опытом 20+ лет.
-        </p>
-        <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-          <button onClick={() => scrollTo("services")} className="px-8 py-4 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700">
-            Посмотреть услуги
-          </button>
-          <button onClick={() => scrollTo("contact")} className="px-8 py-4 rounded-xl bg-white text-blue-700 font-semibold shadow hover:shadow-md">
-            Оставить заявку
-          </button>
-        </div>
-        <p className="mt-6 text-sm text-gray-500">Выезд по всей России • Протокол в день работ • Гарантия качества</p>
-      </section>
+      <section className="bg-gradient-to-b from-slate-900 via-slate-900 to-slate-800 text-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 py-12 sm:py-20 text-center">
+          <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight">
+            Лаборатория ЛНК — вибродиагностика, центровка и балансировка
+          </h1>
+          <p className="mt-5 max-w-3xl mx-auto text-slate-300 text-base sm:text-lg">
+            Неразрушающий контроль состояния машин без остановки процесса.
+            Устраняем «мягкую лапу», выполняем{" "}
+            <strong className="text-white">лазерную центровку валов</strong>,{" "}
+            <strong className="text-white">балансировку</strong> и выдаём
+            протокол со спектральным анализом. Работаем по ГОСТ/ISO. Инженеры с
+            опытом 20+ лет.
+          </p>
 
-      {/* ====== УСЛУГИ ====== */}
-      <section id="services" className="bg-white/70 border-y">
-        <div className="mx-auto max-w-7xl px-6 py-16">
-          <h2 className="text-3xl font-bold text-blue-700 text-center">Наши услуги</h2>
-
-          {/* Вибродиагностика */}
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
-            <div className="rounded-2xl bg-white p-6 shadow-sm">
-              <h3 className="text-xl font-semibold">Вибродиагностика</h3>
-              <p className="mt-3">
-                Метод НК, позволяющий оценить техническое состояние без остановки.
-                Спектральный анализ выявляет &gt;100 типов дефектов: разбаланс, перекос, резонанс,
-                дефекты подшипников, износ муфт, разуплотнения и др.
-              </p>
-              <ul className="mt-3 list-disc list-inside text-sm text-gray-700 space-y-1">
-                <li>Оборудование под давлением: котлы, бойлеры, экономайзеры, котлы-утилизаторы</li>
-                <li>Газоснабжение: КС с центробежными нагнетателями, ГПА</li>
-                <li>Подъёмные сооружения: электродвигатели, редукторы, шахтные подъёмные машины</li>
-                <li>Горнорудная отрасль: дробилки, мельницы, редукторы, эл. двигатели</li>
-                <li>Угольная отрасль: подъёмные машины, экскаваторы, дробилки, вентиляторы</li>
-                <li>Нефтегаз: насосы, компрессоры, турбины, нагнетатели, дымососы, воздуходувки</li>
-                <li>Металлургия: редукторы конвейеров, турбины, генераторы, насосы, вентиляторы</li>
-                <li>Опасные производства: аммиачные ХУ, ЭТ-котлы, насосно-компрессорное</li>
-                <li>Электроагрегаты, фундаменты и несущие конструкции</li>
-              </ul>
-              <p className="mt-3 text-sm text-gray-600">
-                Результат: протокол со спектрами и контурной характеристикой, рекомендации по ремонту.
-              </p>
-            </div>
-
-            {/* Центровка + Балансировка */}
-            <div className="space-y-6">
-              <div className="rounded-2xl bg-white p-6 shadow-sm">
-                <h3 className="text-xl font-semibold">Лазерная центровка валов</h3>
-                <p className="mt-3">
-                  Выравнивание осей валов в допусках производителя/ISO. Устраняем «мягкую лапу»,
-                  подбираем шимирующие пластины, подтверждаем результат контрольным замером.
-                </p>
-                <ul className="mt-3 list-disc list-inside text-sm text-gray-700 space-y-1">
-                  <li>Этапы: подготовка → измерение → корректировка → контроль</li>
-                  <li>Снижение вибрации, ресурсы подшипников и муфт ↑</li>
-                </ul>
-              </div>
-
-              <div className="rounded-2xl bg-white p-6 shadow-sm">
-                <h3 className="text-xl font-semibold">Балансировка</h3>
-                <p className="mt-3">
-                  Устраняем неуравновешенность вращающихся частей (роторов, колес, шкивов).
-                </p>
-                <ul className="mt-3 list-disc list-inside text-sm text-gray-700 space-y-1">
-                  <li>Динамическая: разность фаз на подшипниках ≤ 180°, коррекция в 2 плоскостях</li>
-                  <li>Статическая: стабильная фаза на оборотной частоте, 1 плоскость коррекции</li>
-                </ul>
-              </div>
-            </div>
+          <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+            <Link
+              href="/services"
+              className="px-6 sm:px-8 py-3 sm:py-4 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700"
+            >
+              Посмотреть услуги
+            </Link>
+            <Link
+              href="/contacts"
+              className="px-6 sm:px-8 py-3 sm:py-4 rounded-xl bg-white text-blue-700 font-semibold shadow hover:shadow-md"
+            >
+              Оставить заявку
+            </Link>
           </div>
 
-          {/* ВИК / ПВК */}
-          <div className="mt-6 grid gap-6 md:grid-cols-2">
-            <div className="rounded-2xl bg-white p-6 shadow-sm">
-              <h3 className="text-xl font-semibold">Визуально-измерительный контроль (ВИК)</h3>
-              <p className="mt-3">
-                «Входной фильтр» качества сварных соединений: выявление дефектов, имеющих выход на поверхность
-                от ≈100 мкм. Проводится на этапах сборки и после сварки: геометрия, непровар, подрезы и т. п.
-              </p>
-            </div>
-            <div className="rounded-2xl bg-white p-6 shadow-sm">
-              <h3 className="text-xl font-semibold">Капиллярный контроль (ПВК)</h3>
-              <p className="mt-3">
-                Обнаружение поверхностных и сквозных дефектов по капиллярному проникновению пенетранта
-                и формированию индикаторного рисунка. Применяется к металлам, пластикам, керамике и др.
-              </p>
-              <p className="mt-2 text-sm text-gray-600">Очистка → нанесение пенетранта → удаление → проявление → оценка.</p>
-            </div>
-          </div>
-
-          <div className="mt-10 text-center">
-            <button onClick={() => scrollTo("contact")} className="px-8 py-4 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700">
-              Получить консультацию
-            </button>
-          </div>
+          <p className="mt-6 text-sm text-slate-400">
+            Выезд по всей России • Протокол в день работ • Гарантия качества
+          </p>
+          <p className="mt-1 text-sm">
+            Телефон:{" "}
+            <a className="text-blue-400 font-semibold" href={`tel:${PHONE_TEL}`}>
+              {PHONE_HUMAN}
+            </a>
+          </p>
         </div>
       </section>
 
-      {/* ====== ЦЕНЫ ====== */}
-      <section id="pricing" className="mx-auto max-w-7xl px-6 py-16">
-        <h2 className="text-3xl font-bold text-blue-700 text-center">Цены</h2>
-        <p className="mt-3 text-center text-gray-700">Итоговая стоимость зависит от типа агрегата, доступности и срочности.</p>
-
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
-          {[
-            { title: "Диагностика", price: "от 9 900 ₽", items: ["Осмотр, замеры вибраций", "Спектральный анализ", "Рекомендации"] },
-            { title: "Центровка", price: "от 14 900 ₽", items: ["Устранение soft foot", "Лазерные измерения", "Протокол с допусками"] },
-            { title: "Балансировка", price: "от 19 900 ₽", items: ["Статическая/динамическая", "Коррекция грузами/шимами", "Контрольный замер"] },
-          ].map((p, i) => (
-            <div key={i} className="rounded-2xl bg-white p-6 shadow-sm hover:shadow-md">
-              <h3 className="text-xl font-semibold">{p.title}</h3>
-              <div className="mt-3 text-2xl font-extrabold text-blue-700">{p.price}</div>
-              <ul className="mt-4 list-disc list-inside text-sm text-gray-700 space-y-1">
-                {p.items.map((it, j) => <li key={j}>{it}</li>)}
-              </ul>
-              <button onClick={() => scrollTo("contact")} className="mt-6 w-full rounded-xl bg-blue-600 text-white py-3 font-semibold hover:bg-blue-700">
-                Оставить заявку
-              </button>
+      {/* ====== Бейджи доверия / логотипы ====== */}
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-8">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+          {["ГОСТ", "ISO", "20+ лет", "Протокол в день"].map((t) => (
+            <div
+              key={t}
+              className="rounded-xl border bg-white p-4 shadow-sm text-sm font-semibold text-slate-700"
+            >
+              {t}
             </div>
           ))}
         </div>
       </section>
 
-      {/* ====== ДОКУМЕНТЫ ====== */}
-      <section id="docs" className="bg-white/70 border-y">
-        <div className="mx-auto max-w-7xl px-6 py-16">
-          <h2 className="text-3xl font-bold text-blue-700 text-center">Документы и соответствие</h2>
-          <div className="mt-8 grid gap-6 md:grid-cols-2">
-            <ul className="rounded-2xl bg-white p-6 shadow-sm list-disc list-inside space-y-2">
-              <li>Работы выполняются в соответствии с ГОСТ и ISO (по объектам и методам НК)</li>
-              <li>Протокол измерений: спектры, контурная характеристика, выводы и рекомендации</li>
-              <li>Сертифицированные инженеры, опыт работ &gt; 20 лет</li>
-              <li>Новейшее высокоточное оборудование</li>
-            </ul>
-            <div className="rounded-2xl bg-white p-6 shadow-sm">
-              <h3 className="font-semibold">Скачать</h3>
-              <ul className="mt-3 list-disc list-inside text-blue-700">
-                <li><a href="/docs/primer-protokola.pdf" target="_blank">Пример протокола (PDF)</a></li>
-                <li><a href="/docs/licenses.zip" target="_blank">Лицензии и сертификаты (архив)</a></li>
-                <li><a href="/docs/gost-list.pdf" target="_blank">Перечень применимых ГОСТ/ISO</a></li>
-              </ul>
-              <p className="mt-3 text-xs text-gray-500">Положи файлы в папку <code>public/docs/</code> и назови как в ссылках.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* ====== Краткие услуги ====== */}
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-12">
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-blue-700">
+          Что мы делаем
+        </h2>
+        <p className="mt-3 max-w-3xl text-slate-700">
+          Полный цикл работ: <strong>вибродиагностика</strong>,{" "}
+          <strong>лазерная центровка валов</strong>,{" "}
+          <strong>балансировка</strong>,{" "}
+          <strong>визуально-измерительный и капиллярный контроль</strong>.
+        </p>
 
-      {/* ====== КОНТАКТЫ ====== */}
-      <section id="contact" className="mx-auto max-w-7xl px-6 py-16">
-        <h2 className="text-3xl font-bold text-blue-700 text-center">Контакты</h2>
-        <div className="mt-10 grid gap-10 md:grid-cols-2">
-          <div>
-            <p className="text-lg">Лаборатория неразрушающего контроля «ЛНК»</p>
-            <ul className="mt-4 space-y-2">
-              <li>📞 <a className="hover:text-blue-700" href="tel:+7XXXXXXXXXX">+7 (___) ___-__-__</a></li>
-              <li>✉️ <a className="hover:text-blue-700" href="mailto:info@lnk-lab.ru">info@lnk-lab.ru</a></li>
-              <li>📍 Работаем по всей России</li>
-            </ul>
-
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                const f = e.currentTarget;
-                const body = encodeURIComponent(
-                  `Имя: ${f.name.value}\nТелефон: ${f.phone.value}\nСообщение: ${f.msg.value}`
-                );
-                window.location.href =
-                  `mailto:info@lnk-lab.ru?subject=${encodeURIComponent("Заявка с сайта ЛНК")}&body=${body}`;
-                f.reset();
-              }}
-              className="mt-6 bg-white rounded-2xl p-6 shadow-sm space-y-4"
+        <div className="mt-8 grid gap-6 md:grid-cols-3">
+          {[
+            {
+              t: "Вибродиагностика",
+              d: "Спектральный анализ, выявление >100 типов дефектов. Без остановки процесса.",
+              href: "/services#vibro",
+            },
+            {
+              t: "Центровка валов",
+              d: "Лазерные измерения, устранение soft foot, шимы, контрольный замер, протокол.",
+              href: "/services#align",
+            },
+            {
+              t: "Балансировка",
+              d: "Статическая и динамическая. Устраняем колебания и износ. На месте эксплуатации.",
+              href: "/services#balance",
+            },
+          ].map((c, i) => (
+            <article
+              key={i}
+              className="rounded-2xl border bg-white p-6 shadow-sm hover:shadow-md transition"
             >
-              <input name="name" className="w-full rounded-xl border px-4 py-3" placeholder="Ваше имя" />
-              <input name="phone" className="w-full rounded-xl border px-4 py-3" placeholder="Телефон *" />
-              <textarea name="msg" rows={4} className="w-full rounded-xl border px-4 py-3" placeholder="Коротко опишите задачу" />
-              <button className="w-full rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3">
-                Отправить заявку
-              </button>
-              <p className="text-xs text-gray-500">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.</p>
-            </form>
-          </div>
+              <h3 className="text-lg font-semibold">{c.t}</h3>
+              <p className="mt-2 text-slate-700">{c.d}</p>
+              <Link
+                href={c.href}
+                className="mt-4 inline-block text-blue-700 font-semibold"
+              >
+                Подробнее →
+              </Link>
+            </article>
+          ))}
+        </div>
 
-          {/* Карта (при желании заменишь на точный адрес) */}
-          <div className="overflow-hidden rounded-2xl shadow-sm h-[340px]">
-            <iframe
-              title="map"
-              src="https://www.google.com/maps?q=Russia&output=embed"
-              className="w-full h-full"
-              loading="lazy"
-            />
+        <div className="mt-8 rounded-2xl bg-blue-50 px-6 py-6 text-slate-800 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-sm sm:text-base">
+            Нужен быстрый бриф и расчёт сметы? Ответьте на 5–7 вопросов — мы
+            предложим решение и сроки.
+          </p>
+          <a
+            href={`tel:${PHONE_TEL}`}
+            className="rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white hover:bg-blue-700"
+          >
+            {PHONE_HUMAN}
+          </a>
+        </div>
+      </section>
+
+      {/* ====== Отрасли / где применяем ====== */}
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-12">
+        <h2 className="text-2xl sm:text-3xl font-extrabold">Где мы полезны</h2>
+        <p className="mt-3 max-w-3xl text-slate-700">
+          Работаем с машзалом и вращающимися узлами предприятий: ТЭК, ГПА,
+          металлургия, ГРП, горнодобыча, цемент, нефтехимия, пищевка,
+          водоканалы, строительная техника и др.
+        </p>
+        <div className="mt-6 grid gap-3 sm:grid-cols-2 md:grid-cols-3">
+          {[
+            "Насосы, вентиляторы, дымососы",
+            "Компрессоры, турбины, турбокомпрессоры",
+            "Редукторы, электродвигатели",
+            "Дробилки, мельницы, конвейеры",
+            "Краны и подъёмные механизмы",
+            "Газоперекачивающие агрегаты (ГПА)",
+          ].map((s, i) => (
+            <div
+              key={i}
+              className="rounded-xl border bg-white p-4 text-slate-700 shadow-sm"
+            >
+              {s}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ====== Как работаем ====== */}
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-12">
+        <h2 className="text-2xl sm:text-3xl font-extrabold">Как мы работаем</h2>
+        <div className="mt-6 grid gap-6 md:grid-cols-4">
+          {[
+            { n: "01", t: "Бриф", d: "Короткий опрос по агрегатам и доступу." },
+            { n: "02", t: "Выезд", d: "Замеры, фотофиксация, консультация." },
+            { n: "03", t: "Аналитика", d: "Обработка сигналов, спектры, выводы." },
+            { n: "04", t: "Протокол", d: "Отчёт в день работ + рекомендации." },
+          ].map((s, i) => (
+            <div
+              key={i}
+              className="rounded-2xl border bg-white p-6 shadow-sm text-center"
+            >
+              <div className="mx-auto w-12 h-12 grid place-items-center rounded-full bg-blue-600 text-white font-bold">
+                {s.n}
+              </div>
+              <h3 className="mt-3 font-semibold">{s.t}</h3>
+              <p className="mt-1 text-slate-700">{s.d}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ====== Преимущества ====== */}
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-12">
+        <h2 className="text-2xl sm:text-3xl font-extrabold">Почему ЛНК</h2>
+        <div className="mt-6 grid gap-6 md:grid-cols-3">
+          {[
+            {
+              t: "Опыт 20+ лет",
+              d: "Экспертиза по промышленным агрегатам: от вентиляторов до турбин.",
+            },
+            {
+              t: "ГОСТ/ISO",
+              d: "Работаем по регламентам и нормативам. Протоколы принимают службы контроля.",
+            },
+            {
+              t: "Сроки и прозрачность",
+              d: "Фиксируем сроки и бюджет. Отчёт в день работ — без затяжек.",
+            },
+          ].map((b, i) => (
+            <div key={i} className="rounded-2xl border bg-white p-6 shadow-sm">
+              <h3 className="font-semibold">{b.t}</h3>
+              <p className="mt-2 text-slate-700">{b.d}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ====== Отзывы (микро) ====== */}
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-12">
+        <h2 className="text-2xl sm:text-3xl font-extrabold">Отзывы</h2>
+        <div className="mt-6 grid gap-6 md:grid-cols-3">
+          {[
+            {
+              q: "После центровки исчез перегрев муфты, вибрации в норме. Протокол в тот же день.",
+              a: "Главный механик, завод стройматериалов",
+            },
+            {
+              q: "Динамическая балансировка вентилятора снизила вибрацию с 10 до 2 мм/с — ушёл шум и вибронагрузка.",
+              a: "Служба главного энергетика",
+            },
+            {
+              q: "Диагностика выявила дефект подшипника на ранней стадии — успели заменить без аварии.",
+              a: "НПЗ, компрессорная",
+            },
+          ].map((c, i) => (
+            <blockquote
+              key={i}
+              className="rounded-2xl border bg-white p-6 shadow-sm"
+            >
+              <p className="text-slate-800">“{c.q}”</p>
+              <footer className="mt-3 text-sm text-slate-500">— {c.a}</footer>
+            </blockquote>
+          ))}
+        </div>
+      </section>
+
+      {/* ====== FAQ ====== */}
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 pb-12">
+        <h2 className="text-2xl sm:text-3xl font-extrabold">Частые вопросы</h2>
+        <div className="mt-4 grid gap-3">
+          {[
+            {
+              q: "Как быстро вы выезжаете?",
+              a: "В среднем — на следующий день. Срочно — в день обращения (по согласованию).",
+            },
+            {
+              q: "Можно ли работать без остановки агрегата?",
+              a: "Да, для большинства задач замеры возможны на работающем оборудовании с соблюдением ТБ.",
+            },
+            {
+              q: "Когда будет отчёт?",
+              a: "Электронный протокол отправляем в день работ. Оригиналы с печатью — на следующий рабочий день.",
+            },
+          ].map((f, i) => (
+            <details
+              key={i}
+              className="rounded-xl border bg-white p-4 shadow-sm"
+            >
+              <summary className="cursor-pointer font-semibold">{f.q}</summary>
+              <p className="mt-2 text-slate-700">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      {/* ====== Закрывающий CTA ====== */}
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 pb-14">
+        <div className="rounded-2xl bg-blue-600 text-white px-6 py-8 shadow-sm flex flex-col md:flex-row items-center justify-between gap-4">
+          <div>
+            <h3 className="text-xl font-bold">
+              Готовы снизить вибрации и вернуть агрегаты в норматив?
+            </h3>
+            <p className="mt-1 text-blue-100">
+              Позвоните — обсудим задачу и согласуем удобное время выезда.
+            </p>
+          </div>
+          <div className="flex gap-3">
+            <a
+              href={`tel:${PHONE_TEL}`}
+              className="rounded-xl bg-white px-5 py-3 font-semibold text-blue-700 hover:bg-blue-50"
+            >
+              {PHONE_HUMAN}
+            </a>
+            <Link
+              href="/contacts"
+              className="rounded-xl border border-blue-200 bg-blue-700 px-5 py-3 font-semibold hover:bg-blue-800"
+            >
+              Контакты
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* ====== Футер ====== */}
-      <footer className="text-center text-sm text-gray-500 py-8">
-        © {new Date().getFullYear()} ЛНК — вибродиагностика, центровка, балансировка. Все права защищены.
-      </footer>
+      {/* ====== JSON-LD: Организация + Сайт + Основные услуги ====== */}
+      <Script id="ld-org" type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "ЛНК",
+          url: "https://example.com/",
+          telephone: PHONE_TEL,
+          areaServed: "RU",
+          sameAs: [],
+        })}
+      </Script>
+      <Script id="ld-website" type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "ЛНК",
+          url: "https://example.com/",
+          potentialAction: {
+            "@type": "SearchAction",
+            target: "https://example.com/search?q={query}",
+            "query-input": "required name=query",
+          },
+        })}
+      </Script>
+      <Script id="ld-services" type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          itemListElement: [
+            {
+              "@type": "Service",
+              position: 1,
+              name: "Вибродиагностика",
+              url: "https://example.com/services#vibro",
+            },
+            {
+              "@type": "Service",
+              position: 2,
+              name: "Лазерная центровка валов",
+              url: "https://example.com/services#align",
+            },
+            {
+              "@type": "Service",
+              position: 3,
+              name: "Балансировка",
+              url: "https://example.com/services#balance",
+            },
+          ],
+        })}
+      </Script>
     </main>
   );
 }
